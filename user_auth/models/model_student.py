@@ -1,5 +1,5 @@
 from django.db import models
-from .auth_user import User
+from .user import User
 from .model_courses import *
 from .model_teacher import *
 from .model_worker import *
@@ -7,7 +7,7 @@ from .model_worker import *
 class Student(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     group = models.ManyToManyField('Group', related_name='student')
-    course = models.ManyToManyField(Course, related_name='student')
+    # course = models.ManyToManyField(Course, related_name='student')
     is_line = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)

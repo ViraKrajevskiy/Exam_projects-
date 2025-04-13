@@ -1,14 +1,16 @@
 from django.db import models
-
+from .model_group import *
 from user_auth.models import BaseModel
+from .model_worker import *
 
-
-class Course(BaseModel):
-    title = models.CharField(max_length=50)
-    descriptions = models.CharField(max_length=500, null=True, blank=True)
-
-    def __str__(self):
-        return self.title
 
 class Teacher(BaseModel):
-    name
+    staff = models.OneToOneField('Staff', on_delete=models.CASCADE, null=True, blank=True)
+    user = models.OneToOneField('User', on_delete=models.CASCADE)
+    teacher_group = models.ManyToManyField(Group, related_name='teachers')
+
+
+class Mentor(BaseModel):
+    staff = models.OneToOneField('Staff', on_delete=models.CASCADE, null=True, blank=True)
+    user = models.OneToOneField('User', on_delete=models.CASCADE)
+    mentor_group = models.ManyToManyField(Group, related_name='mentors')

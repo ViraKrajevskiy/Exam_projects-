@@ -3,6 +3,7 @@ from django.db import models
 from django.contrib.auth.models import BaseUserManager
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 
+
 class BaseModel(models.Model):
     created_ed = models.DateField(auto_now_add=True)
     updated_ed = models.DateField(auto_now=True)
@@ -31,20 +32,23 @@ class CustomUserManager(BaseUserManager):
 
         return self.create_user(phone_number, email, password, **extra_fields)
 
+class User(AbstractBaseUser, PermissionsMixin, BaseModel):
+    class Role(models.TextChoices):
+        ADMIN = 'admin', 'Админ'
+        STUDENT = 'student', 'Студент'
+        TEACHER = 'teacher', 'Преподаватель'
+        WORKER = 'worker', 'Сотрудник'
 
-class User(AbstractBaseUser, PermissionsMixin,BaseModel ):
     phone_regex = RegexValidator(
         regex=r'^\+998\d{9}$',
-        message="Telefon raqam '+998XXXXXXXXX' formatida bo'lishi kerak!"
+        message="Номер телефона должен быть в формате +998XXXXXXXX!"
     )
     email = models.EmailField(unique=True, null=True, blank=True)
-    phone_number = models.CharField(validators=[phone_regex],max_length=13, unique=True)
-    is_admin = models.BooleanField(default=False)
-    is_staff = models.BooleanField(default=False)
+    phone_number = models.CharField(validators=[phone_regex], max_length=13, unique=True)
+    role = models.CharField(max_length=20, choices=Role.choices, default=Role.STUDENT)
+
     is_active = models.BooleanField(default=True)
-    is_student = models.BooleanField(default=False)
-    is_teacher = models.BooleanField(default=False)
-    is_worker = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=False)
 
     objects = CustomUserManager()
 
@@ -56,4 +60,4 @@ class User(AbstractBaseUser, PermissionsMixin,BaseModel ):
 
     @property
     def is_superuser(self):
-        return self.is_admin
+        return self.role == self.Role.ADMIN
