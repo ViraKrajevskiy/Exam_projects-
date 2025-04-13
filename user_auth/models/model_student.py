@@ -1,5 +1,5 @@
 from django.db import models
-from .auth_user import User
+from .user import User
 from .model_courses import *
 from .model_teacher import *
 from .model_worker import *
