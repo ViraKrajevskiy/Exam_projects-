@@ -5,16 +5,18 @@ from .model_teacher import *
 from .model_worker import *
 
 class Student(models.Model):
+    surname = models.CharField(30)
+    firstname = models.CharField(30)
+    lastname = models.CharField(30)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     group = models.ManyToManyField('Group', related_name='student')
-    # course = models.ManyToManyField(Course, related_name='student')
     is_line = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     descriptions = models.CharField(max_length=500, blank=True, null=True)
 
     def __str__(self):
-        return self.user.phone
+        return f"{self.surname},{self.firstname},{self.lastname},{self.group}"
 
 
 class Parents(models.Model):
@@ -27,4 +29,4 @@ class Parents(models.Model):
     updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.full_name
+        return f"{self.full_name} ({self.phone_number})"

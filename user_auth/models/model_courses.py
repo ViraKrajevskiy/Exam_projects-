@@ -25,10 +25,12 @@ class CourseDuration(BaseModel):
     course_end_time = models.DateField()
     work_days = models.ManyToManyField(StudyDay, related_name='course_durations')
 
+    def __str__(self):
+        return f"{self.total_duration} недель с {self.course_start_time} по {self.course_end_time}"
 
 class Course(BaseModel):
     course_cost_per_week = models.IntegerField()
-    course_total_cost = models.IntegerField()
+    course_total_cost = models.IntegerField(editable=False)
     course_name = models.CharField(max_length=90)
     course_descriptions = models.TextField(max_length=150)
 
@@ -37,3 +39,12 @@ class Course(BaseModel):
     mentor = models.ForeignKey('Mentor', on_delete=models.SET_NULL, null=True, related_name='courses')
 
     course_duration = models.OneToOneField(CourseDuration, on_delete=models.CASCADE, related_name='course')
+
+    # Вычисление общей стоимости курса перед сохранением
+    def save(self, *args, **kwargs):
+        if self.course_duration:
+            self.course_total_cost = self.course_cost_per_week * self.course_duration.total_duration
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.course_name
