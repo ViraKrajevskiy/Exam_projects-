@@ -1,8 +1,8 @@
-from django.db import models
 from django.utils import timezone
-from .model_student import *
-from .user import *
-from .model_courses import *
+
+from user_auth.models.base_user_model.user import BaseModel
+from user_auth.models.student_package.model_courses import *
+
 
 class WorkDay(models.Model):
     DAYS_OF_WEEK = [
@@ -58,7 +58,7 @@ class Staff(BaseModel):
     user = models.OneToOneField('User', on_delete=models.CASCADE)
     department = models.ForeignKey(Department, on_delete=models.CASCADE, related_name='workers')
     salary_pay = models.OneToOneField(WorkerSalaryPayed, on_delete=models.CASCADE)
-    position = models.ForeignKey(PositionLevel, on_delete=models.SET_NULL, null=True, blank=True)
+    position = models.ForeignKey(PositionLevel, on_delete=models.SET_NULL, null=True)
     work_days = models.ManyToManyField(WorkDay, blank=True, related_name='staff_members')
 
     def __str__(self):

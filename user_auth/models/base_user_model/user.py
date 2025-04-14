@@ -1,7 +1,6 @@
 from django.core.validators import RegexValidator
 from django.db import models
-from django.contrib.auth.models import BaseUserManager
-from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
+from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, PermissionsMixin
 
 
 class BaseModel(models.Model):
@@ -11,26 +10,27 @@ class BaseModel(models.Model):
     class Meta:
         abstract = True
 
+
 class CustomUserManager(BaseUserManager):
     def create_user(self, phone_number, email=None, password=None, **extra_fields):
         if not phone_number:
             raise ValueError('Поле ввода номера телефона не должно быть пустым!')
-        # phone_number = self.normalize_phone_number(phone_number)
         user = self.model(phone_number=phone_number, email=email, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
         return user
 
     def create_superuser(self, phone_number, password, email=None, **extra_fields):
-        extra_fields.setdefault('is_admin', True)
+        extra_fields.setdefault('is_superuser', True)
         extra_fields.setdefault('is_staff', True)
 
-        if extra_fields.get('is_admin') is not True:
-            raise ValueError('Superuser is_admin=True bo`lishi kerak!')
+        if extra_fields.get('is_superuser') is not True:
+            raise ValueError('Суперпользователь должен иметь is_superuser=True!')
         if extra_fields.get('is_staff') is not True:
-            raise ValueError('Superuser is_staff=True bo`lishi kerak!')
+            raise ValueError('Суперпользователь должен иметь is_staff=True!')
 
         return self.create_user(phone_number, email, password, **extra_fields)
+
 
 class User(AbstractBaseUser, PermissionsMixin, BaseModel):
     class Role(models.TextChoices):
@@ -57,7 +57,3 @@ class User(AbstractBaseUser, PermissionsMixin, BaseModel):
 
     def __str__(self):
         return self.phone_number
-
-    @property
-    def is_superuser(self):
-        return self.role == self.Role.ADMIN

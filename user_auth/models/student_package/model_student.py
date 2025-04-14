@@ -1,8 +1,6 @@
-from django.db import models
-from .user import User
-from .model_courses import *
-from .model_teacher import *
-from .model_worker import *
+from user_auth.models.base_user_model.user import User
+from user_auth.models.student_package.model_courses import *
+
 
 class Student(models.Model):
     surname = models.CharField(30)

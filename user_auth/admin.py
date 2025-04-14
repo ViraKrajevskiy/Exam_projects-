@@ -1,5 +1,4 @@
 from django.contrib import admin
-from user_auth.models import *
-from user_auth.models.model_teacher import *
+from .models import *
 
-# admin.site.register([Teacher, Student,Course,Staff,Departments,Parents,])
+admin.site.register([StudyDay,User,Teacher,CourseDuration, Student,PositionLevel,WorkDay,WorkerSalaryPayed,WorkerSalaryWaitedPay,Course,Staff, Department,Parents, GroupHomework,StudentHomework,Mentor,Group,Lesson])

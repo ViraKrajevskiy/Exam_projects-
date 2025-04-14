@@ -64,7 +64,7 @@ REST_FRAMEWORK = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'Training center',  # Имя базы данных
+        'NAME': 'UchebniyCentr',  # Имя базы данных
         'USER': 'ViraKrajevskiy',       # Имя пользователя PostgreSQL
         'PASSWORD': '3003',   # Пароль пользователя
         'HOST': 'localhost',           # Адрес сервера БД
