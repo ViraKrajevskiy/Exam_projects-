@@ -1,7 +1,7 @@
 # from drf_yasg.utils import swagger_auto_schema
 # from rest_framework.pagination import PageNumberPagination
 # from rest_framework.response import Response
-# from rest_framework.views import APIView
+# from rest_framework.views_sets import APIView
 # from user_auth.serializers.user_login.user_serializer import *
 # from django.contrib.auth.hashers import make_password
 #
