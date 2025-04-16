@@ -3,7 +3,6 @@ from django.core.exceptions import ValidationError
 from user_auth.models.student_package.model_group import *
 
 
-#Проверка на размер видео
 def validate_video_size(file):
     max_size_mb = 200
     if file.size > max_size_mb * 1024 * 1024:

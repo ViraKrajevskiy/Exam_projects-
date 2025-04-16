@@ -60,6 +60,7 @@ class Staff(BaseModel):
     salary_pay = models.OneToOneField(WorkerSalaryPayed, on_delete=models.CASCADE)
     position = models.ForeignKey(PositionLevel, on_delete=models.SET_NULL, null=True)
     work_days = models.ManyToManyField(WorkDay, blank=True, related_name='staff_members')
+    salary_balance = models.DecimalField(max_digits=12, decimal_places=2, default=0)
 
     def __str__(self):
         return f"{self.firstname} {self.surname} - {self.position}"

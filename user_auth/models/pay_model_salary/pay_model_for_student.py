@@ -1,4 +1,6 @@
 from django.db import models
+from django.db.models import *
+
 from user_auth.models.base_user_model.user import BaseModel
 
 class StudentPay(BaseModel):
@@ -8,8 +10,10 @@ class StudentPay(BaseModel):
     ]
 
     payment_type = models.CharField(choices=PAYMENT_TYPE_CHOICES, max_length=2)
-    value = models.IntegerField()
-    card_num = models.CharField(max_length=16, blank=True, null=True)  # Только если тип оплаты "Cr"
+    value = models.CharField(max_length=40, blank=True, null=True)
+    card_number = models.CharField(max_length=16, blank=True, null=True)
+    course_pay = ForeignKey('Course',on_delete=models.SET_NULL,null=True, blank=True, related_name='payments')
+    student = models.ForeignKey('Student', on_delete=models.CASCADE, related_name='payments')
 
     def clean(self):
         from django.core.exceptions import ValidationError
