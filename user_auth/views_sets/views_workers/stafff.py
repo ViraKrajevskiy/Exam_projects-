@@ -14,6 +14,6 @@ class TeacherViewSet(viewsets.ModelViewSet):
     queryset = Teacher.objects.all()
     serializer_class = TeacherSerializer
 
-class MentorViewSer(viewsets.ModelViewSet):
+class MentorViewSet(viewsets.ModelViewSet):
     queryset = Mentor.objects.all()
     serializer_class = MentorSerializer

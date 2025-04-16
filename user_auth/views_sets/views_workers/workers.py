@@ -7,7 +7,7 @@ from user_auth.serializers.things_for_workers_serializer.teacher_serializer impo
 
 
 class PositionLevelViewSet(viewsets.ModelViewSet):
-    queryset = Teacher.objects.all()
+    queryset = PositionLevel.objects.all()
     serializer_class = PositionLevelSerializer
 
 class DepartmentViewSet(viewsets.ModelViewSet):
@@ -18,7 +18,7 @@ class WorkerSalaryPayedViewSet(viewsets.ModelViewSet):
     queryset = WorkerSalaryPayed.objects.all()
     serializer_class = WorkerSalaryPayedSerializer
 
-class WorkerSalaryWaitedPayed(viewsets.ModelViewSet):
+class WorkerSalaryWaitedPayViewSet(viewsets.ModelViewSet):
     queryset = WorkerSalaryWaitedPay.objects.all()
     serializer_class = WorkerSalaryWaitedPaySerializer
 

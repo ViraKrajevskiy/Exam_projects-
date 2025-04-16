@@ -1,6 +1,10 @@
 Имя проекта: Exam project
 
+
+
 1.  .venv - виртуальное окружение проекта
+
+
 
 2.  config - тип файл/python package: python package
     |
@@ -16,6 +20,8 @@
     |__   urls.py - здесь мы подключаем урлс с других аппов
        \__
           wsgi.py
+
+
 
 3.  configapp - тип файл/python package: python package
     |
@@ -33,8 +39,12 @@
     |__
        \
 
+
+
 4.  homeworks - в этом файле храняться данные об домашних заданиях учеников
     Данные попадають из user_auth с моделя HomeWorksGroup и StudentHomeWork эти модели в папке 1.user_auth 2.models 3.Hw_model  Место моделя: 4.model_home_work_lesson.py .
+
+
 
 5.  user_auth - тип файл/python package: python package.
     |
@@ -79,5 +89,10 @@
        \__       __
           urls.py==Подключены url к config и также здесь все router.
 
+
+
 6.
+
+
+
 7.
