@@ -4,6 +4,7 @@ from user_auth.serializers.stafff_serializer.staff import *
 from user_auth.serializers.student_serializer.student_serializer import *
 from user_auth.serializers.special_lesson_serializer.lesson_serializer import *
 from user_auth.serializers.group_serializers.group_serializer import *
-
-
-# атанденсе не забудь для ученика каждого
+from user_auth.serializers.user_serializer.user_serializer import *
+from user_auth.serializers.pay_serializer.pay_student_serializer import *
+from user_auth.serializers.pay_serializer.pay_staff_model import *
+from user_auth.serializers.token_serializer import *

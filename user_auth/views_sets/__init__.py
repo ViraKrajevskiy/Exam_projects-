@@ -5,3 +5,5 @@ from user_auth.views_sets.views_student.student import *
 from user_auth.views_sets.views_course.course_views import *
 from user_auth.views_sets.views_lesson.lesson import *
 from user_auth.views_sets.views_workers.stafff import *
+from user_auth.views_sets.views_sets_pay.for_worker import *
+from user_auth.views_sets.views_sets_pay.for_student import *
