@@ -1,9 +1,6 @@
-from user_auth.models.base_user_model.user import BaseModel
 from django.db import models
-
 from user_auth.models.student_package.model_group import Group
 from user_auth.models.student_package.model_student import Student
-
 
 class Attendance(models.Model):
     ATTENDANCE_STATUS_CHOICES = [
@@ -22,4 +19,4 @@ class Attendance(models.Model):
         unique_together = ['student', 'date']
 
     def __str__(self):
-        return f"{self.student} - {self.date} - {self.get_status_display()}"
+        return f"{self.student} - {self.date}"

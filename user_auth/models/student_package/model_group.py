@@ -12,6 +12,7 @@ class Group(BaseModel):
     end_date = models.DateField()
     price = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
     descriptions = models.CharField(max_length=500, blank=True, null=True)
+    students = models.ManyToManyField('Student', related_name='courses', blank=True)
 
     def __str__(self):
         return self.title

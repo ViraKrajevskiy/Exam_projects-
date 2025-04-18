@@ -32,8 +32,6 @@ class Course(BaseModel):
     course_total_cost = models.IntegerField(editable=False)
     course_name = models.CharField(max_length=90)
     course_descriptions = models.TextField(max_length=150)
-    #
-    # students = models.ManyToManyField('Student', related_name='courses', blank=True)
     teacher = models.ForeignKey('Teacher', on_delete=models.SET_NULL, null=True, related_name='courses')
     mentor = models.ForeignKey('Mentor', on_delete=models.SET_NULL, null=True, related_name='courses')
 
