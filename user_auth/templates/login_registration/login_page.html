@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Логин</title>
+    {% load static %}
+    <script src="{% static 'user_auth/static/js/login_page.js' %}" defer></script>
+</head>
+<body>
+    <h1>Логин</h1>
+    <form id="login-form">
+        <input type="text" id="login-username" name="username" placeholder="Логин" required>
+        <input type="password" id="login-password" name="password" placeholder="Пароль" required>
+        <button type="submit">Войти</button>
+    </form>
+
+
+    <div id="tokens"></div>
+    <div id="error-message"></div>
+</body>
+</html>

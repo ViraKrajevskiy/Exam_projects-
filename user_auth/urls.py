@@ -1,6 +1,6 @@
-from user_auth.view.login import AuthViewSet
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
+from user_auth.view.login.login import *
 
 from user_auth.views_sets.views_workers.workers import *
 from user_auth.views_sets.view_sets_user.user_views_set import *
@@ -17,7 +17,7 @@ router = DefaultRouter()
 router.register(r'users', UserViewSet),
 router.register(r'group_homework', GroupHomeWorkViewsSet),
 router.register(r'student_homework', StudentHomeworkViewsSet),
-# router.register(r'rooms', RoomViewSet)
+#router.register(r'rooms', RoomViewSet)
 router.register(r'lessons', LessonViewsSet),
 router.register(r'study_days', StudyDayViewSet),
 router.register(r'course_durations', CourseDurationViewSet),
@@ -41,9 +41,13 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 
+
 urlpatterns = [
-    path('' , include(router.urls)),
-    # path('teacher_api/',TeacherViewSet.as_view()),
+    path('swagger/', include(router.urls)),  # Исправленный путь на swagger/
+
+    path('', login_page, name='login_page'),
+    path('registration/',register_page, name='register_page'),
+
     path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]
