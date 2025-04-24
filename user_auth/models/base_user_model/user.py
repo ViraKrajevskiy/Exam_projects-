@@ -10,16 +10,19 @@ class BaseModel(models.Model):
     class Meta:
         abstract = True
 
-
 class CustomUserManager(BaseUserManager):
 
-    def create_staff(self, phone_number, email=None, password=None, **extra_fields):
+    def create_user(self, phone_number, email=None, password=None, **extra_fields):
         if not phone_number:
             raise ValueError('Поле ввода номера телефона не должно быть пустым!')
         user = self.model(phone_number=phone_number, email=email, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
         return user
+
+    def create_staff(self, phone_number, email=None, password=None, **extra_fields):
+        extra_fields.setdefault('is_staff', True)
+        return self.create_user(phone_number, email, password, **extra_fields)
 
     def create_superuser(self, phone_number, password, email=None, **extra_fields):
         extra_fields.setdefault('is_superuser', True)
@@ -59,3 +62,21 @@ class User(AbstractBaseUser, PermissionsMixin, BaseModel):
 
     def __str__(self):
         return self.phone_number
+
+
+    # Пример метода для проверки роли
+    def is_teacher(self):
+        return self.role == self.Role.TEACHER
+
+    def is_admin(self):
+        return self.role == self.Role.ADMIN
+
+    def is_student(self):
+        return self.role == self.Role.STUDENT
+
+    def is_worker(self):
+        return self.role == self.Role.WORKER
+
+    def is_supervisor(self):
+        return self.role == self.Role.SUPERVISOR
+

@@ -1,17 +1,15 @@
 from rest_framework import serializers
-from django.contrib.auth import authenticate
+from rest_framework_simplejwt.tokens import RefreshToken
 from user_auth.models.base_user_model.user import User
 
-
-class LoginSerializer(serializers.Serializer):
+class CustomLoginSerializer(serializers.Serializer):
     phone_number = serializers.CharField()
     password = serializers.CharField(write_only=True)
 
     def validate(self, data):
-        # Получаем пользователя по номеру телефона
-        try:
-            user = User.objects.get(phone_number=data['phone_number'])
-        except User.DoesNotExist:
+        user = User.objects.filter(phone_number=data['phone_number']).first()
+
+        if not user:
             raise serializers.ValidationError("Неверный номер телефона или пароль")
 
         if not user.check_password(data['password']):
@@ -20,6 +18,9 @@ class LoginSerializer(serializers.Serializer):
         if not user.is_active:
             raise serializers.ValidationError("Пользователь деактивирован")
 
+        # Generate JWT tokens (Access & Refresh)
+        refresh = RefreshToken.for_user(user)
+        data['access_token'] = str(refresh.access_token)
+        data['refresh_token'] = str(refresh)
 
-        data['user'] = user
         return data
