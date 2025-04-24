@@ -5,17 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Регистрация</title>
     {% load static %}
-    <script src="{% static 'user_auth/static/js/registeration_page.js' %}" defer></script>
+    <script src="{% static 'user_auth/js/login_page.js' %}" defer></script>
 </head>
 <body>
     <h1>Регистрация</h1>
     <form id="register-form">
-        <input type="text" id="register-username" name="username" placeholder="Логин" required>
+        <input type="text" id="register-phone" name="phone_number" placeholder="Номер телефона" required>
         <input type="email" id="register-email" name="email" placeholder="Email" required>
         <input type="password" id="register-password" name="password" placeholder="Пароль" required>
         <button type="submit">Зарегистрироваться</button>
     </form>
 
-    <div id="error-message"></div> <!-- Здесь будут выводиться ошибки -->
+    <div id="error-message"></div>
 </body>
 </html>

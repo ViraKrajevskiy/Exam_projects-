@@ -1,7 +1,6 @@
 Имя проекта: Exam project
 
 
-
 1.  .venv - виртуальное окружение проекта
 
 
@@ -23,30 +22,12 @@
 
 
 
-3.  configapp - тип файл/python package: python package
-    |
-    Подключен ли этот configapp к config да/нет : Нет
-    |
-    Внутрення Структура файла configapp:
-    |__
-    |  \
-    |__
-    |  \
-    |__
-    |  \
-    |__
-    |  \
-    |__
-       \
-
-
-
-4.  homeworks - в этом файле храняться данные об домашних заданиях учеников
+3.  homeworks - в этом файле храняться данные об домашних заданиях учеников
     Данные попадають из user_auth с моделя HomeWorksGroup и StudentHomeWork эти модели в папке 1.user_auth 2.models 3.Hw_model  Место моделя: 4.model_home_work_lesson.py .
 
 
 
-5.  user_auth - тип файл/python package: python package.
+4.  user_auth - тип файл/python package: python package.
     |
     Подключен ли этот user_auth к config да/нет : да.
     |
@@ -54,19 +35,28 @@
     |
     Имя проекта : user_auth.
     |__
-    |  \_migrations_
+    |  \._migrations_
     |
     |__
-    |  \_models_
+    |  \._models_
     |
     |__
-    |  \_serializers_
+    |  \._permissions_
     |
     |__
-    |  \_view_
+    |  \._serializers_
     |
     |__
-    |  \_views_sets_
+    |  \._static_
+    |
+    |__
+    |  \._templates_
+    |
+    |__
+    |  \._view_
+    |
+    |__
+    |  \._views_sets_
     |
     |__
     |  \__           __
@@ -91,8 +81,14 @@
 
 
 
-6.
+5. video_lessons - видео уроки.
 
 
+6. manage.py
 
-7.
+
+7. Models_Views_Serializer.docx
+
+8. Краткая документация по проделанной работе.txt
+
+9.Точные данные.txt

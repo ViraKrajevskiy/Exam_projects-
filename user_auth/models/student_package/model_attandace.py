@@ -1,8 +1,20 @@
 from django.db import models
+from user_auth.models.Hw_model.model_lesson import Lesson
 from user_auth.models.student_package.model_group import Group
 from user_auth.models.student_package.model_student import Student
 
+#Привязка класса к атандансе рекорд и также подвязка группы невозможность использование филда маний то маний
+
 class Attendance(models.Model):
+    date = models.DateField()
+    group = models.ForeignKey('Group', on_delete=models.CASCADE, related_name='attendances')
+    students = models.ManyToManyField('Student', through='AttendanceRecord', related_name='attendances')
+
+    def __str__(self):
+        return f"Посещаемость {self.date} ({self.group})"
+
+
+class AttendanceRecord(models.Model):
     ATTENDANCE_STATUS_CHOICES = [
         ('P', 'Пришел'),
         ('A', 'Отсутствует'),
@@ -10,13 +22,12 @@ class Attendance(models.Model):
         ('E', 'Уважительная причина'),
     ]
 
-    student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name='attendances')
-    date = models.DateField()
+    attendance = models.ForeignKey('Attendance', on_delete=models.CASCADE)
+    student = models.ForeignKey('Student', on_delete=models.CASCADE)
     status = models.CharField(max_length=1, choices=ATTENDANCE_STATUS_CHOICES)
-    group = models.ForeignKey(Group, on_delete=models.CASCADE, related_name='attendances')
 
     class Meta:
-        unique_together = ['student', 'date']
+        unique_together = ('attendance', 'student')
 
     def __str__(self):
-        return f"{self.student} - {self.date}"
+        return f"{self.student} - {self.attendance.date} - {self.get_status_display()}"

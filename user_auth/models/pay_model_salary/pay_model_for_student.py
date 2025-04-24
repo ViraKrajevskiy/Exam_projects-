@@ -17,8 +17,8 @@ class StudentPay(BaseModel):
 
     def clean(self):
         from django.core.exceptions import ValidationError
-        if self.payment_type == 'Cr' and not self.card_num:
+        if self.payment_type == 'Cr' and not self.card_number:
             raise ValidationError("Номер карты обязателен для оплаты картой.")
-        if self.payment_type == 'Mn' and self.card_num:
+        if self.payment_type == 'Mn' and self.card_number:
             raise ValidationError("Номер карты не должен быть указан для наличной оплаты.")
 

@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
 
         const data = {
-            username: document.getElementById('register-username').value,
+            phone_number: document.getElementById('register-phone').value,
             email: document.getElementById('register-email').value,
             password: document.getElementById('register-password').value,
         };
@@ -22,7 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const result = await response.json();
             if (response.ok) {
-                alert(result.message); // Покажет сообщение об успешной регистрации
+                alert(result.message); // сообщение об успешной регистрации
+                window.location.href = '/login/';
             } else {
                 errorMessage.innerText = `Ошибка регистрации: ${result.message || "Неизвестная ошибка"}`;
             }

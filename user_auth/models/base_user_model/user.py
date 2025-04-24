@@ -12,7 +12,8 @@ class BaseModel(models.Model):
 
 
 class CustomUserManager(BaseUserManager):
-    def create_user(self, phone_number, email=None, password=None, **extra_fields):
+
+    def create_staff(self, phone_number, email=None, password=None, **extra_fields):
         if not phone_number:
             raise ValueError('Поле ввода номера телефона не должно быть пустым!')
         user = self.model(phone_number=phone_number, email=email, **extra_fields)
@@ -38,6 +39,7 @@ class User(AbstractBaseUser, PermissionsMixin, BaseModel):
         STUDENT = 'student', 'Студент'
         TEACHER = 'teacher', 'Преподаватель'
         WORKER = 'worker', 'Сотрудник'
+        SUPERVISOR = 'supervisor', 'Глава'
 
     phone_regex = RegexValidator(
         regex=r'^\+998\d{9}$',

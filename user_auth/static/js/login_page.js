@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
 
         const data = {
-            username: document.getElementById('login-username').value,
+            phone_number: document.getElementById('login-phone').value,
             password: document.getElementById('login-password').value,
         };
 
@@ -22,9 +22,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const result = await response.json();
             if (response.ok) {
-                tokenDisplay.innerText = `Access: ${result.access}\nRefresh: ${result.refresh}`; // Покажет токены
+                localStorage.setItem('access_token', result.access);
+                localStorage.setItem('refresh_token', result.refresh);
+                tokenDisplay.innerText = `Access: ${result.access}\nRefresh: ${result.refresh}`;
+                window.location.href = '/main_page/'; // редирект после входа
             } else {
-                errorMessage.innerText = `Ошибка входа: ${result.error || "Неизвестная ошибка"}`;
+                errorMessage.innerText = `Ошибка входа: ${result.detail || result.error || "Неизвестная ошибка"}`;
             }
         } catch (error) {
             errorMessage.innerText = `Ошибка подключения: ${error.message}`;

@@ -19,4 +19,6 @@ class GroupHomeworkSerializer(serializers.ModelSerializer):
 class StudentHomeworkSerializer(serializers.ModelSerializer):
     class Meta:
         model = StudentHomework
-        fields = '__all__'
+        fields = ['id', 'group_homework', 'file', 'comment']  # не включаем mark и is_checked
+        read_only_fields = ['group_homework']
+
