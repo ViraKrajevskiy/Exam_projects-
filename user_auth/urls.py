@@ -2,7 +2,7 @@ from django.urls import path
 from rest_framework.routers import DefaultRouter
 
 from user_auth.serializers.login_and_registration_serializer.logins_serializer import *
-from user_auth.view.login_registration.registration import *
+# from user_auth.view.login_registration.registration import *
 
 from user_auth.views_sets.view_sets_user.user_views_set import *
 from user_auth.views_sets.views_group.group import *
@@ -38,7 +38,7 @@ router.register(r'pay_for_student', PayStudentViewsSet)
 urlpatterns = [
     path('api/login/', LoginView.as_view(), name='login'),
     path('api/logout/', LogoutView.as_view(), name='logout'),
-    path('api/register/', RegisterView.as_view(), name='register'),
+    # path('api/register/', RegisterView.as_view(), name='register'),
 ]
 
 # Добавление маршрутов из DefaultRouter
