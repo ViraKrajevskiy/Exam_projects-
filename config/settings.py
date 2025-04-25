@@ -66,12 +66,13 @@ SIMPLE_JWT = {
     'BLACKLIST_AFTER_ROTATION': True,
 }
 
+STATIC_URL = '/static/'
+
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'user_auth/static/')
+    BASE_DIR / 'user_auth' / 'static'
 ]
-
-STATIC_URL = '/static/'
 
 # STATIC_ROOT = os.path.join(BASE_DIR,'static/')
 
