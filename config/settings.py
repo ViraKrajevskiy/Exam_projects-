@@ -3,6 +3,9 @@ from datetime import timedelta
 from email.policy import default
 from pathlib import Path
 import os
+
+from django.conf.global_settings import STATIC_ROOT
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -18,7 +21,7 @@ SECRET_KEY = 'django-insecure-@5az8@+l-p7vf#6gu%0)ps!k=*1++(!0cdl=5n-q#&^3!yaru2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['*', '161.35.30.48']
 
 # Application definition
 
@@ -35,8 +38,6 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'drf_yasg',
     'django_otp',
-
-
 ]
 
 AUTHENTICATION_BACKENDS = [
@@ -53,6 +54,10 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django_otp.middleware.OTPMiddleware',
 ]
+
+
+
+
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(hours=1),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
@@ -61,7 +66,15 @@ SIMPLE_JWT = {
 }
 
 
-STATICFILES_DIRS = [BASE_DIR / 'user_auth' / 'static']
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'user_auth/static/')
+]
+
+STATIC_URL = '/static/'
+
+# STATIC_ROOT = os.path.join(BASE_DIR,'static/')
+
+
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
@@ -73,7 +86,6 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     )
 }
-
 
 
 DATABASES = {
@@ -145,7 +157,7 @@ AUTH_USER_MODEL = 'user_auth.User'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = '/static/'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
