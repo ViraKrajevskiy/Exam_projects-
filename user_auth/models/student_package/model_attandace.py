@@ -31,3 +31,5 @@ class AttendanceRecord(models.Model):
 
     def __str__(self):
         return f"{self.student} - {self.attendance.date} - {self.get_status_display()}"
+
+#кароче те кто опоздал по дефолту будут не будет не пришли
