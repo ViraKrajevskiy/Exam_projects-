@@ -10,6 +10,7 @@ from django.conf.global_settings import STATIC_ROOT
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
+
 LOGIN_REDIRECT_URL = '/swagger/'
 
 # Quick-start development settings - unsuitable for production
@@ -87,17 +88,17 @@ REST_FRAMEWORK = {
     )
 }
 
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'UchebniyCentr',  # Имя базы данных
-        'USER': 'ViraKrajevskiy',       # Имя пользователя PostgreSQL
-        'PASSWORD': '3003',   # Пароль пользователя
-        'HOST': 'localhost',           # Адрес сервера БД
-        'PORT': '5432',
-    }
-}
+#
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'UchebniyCentr',  # Имя базы данных
+#         'USER': 'ViraKrajevskiy',       # Имя пользователя PostgreSQL
+#         'PASSWORD': '3003',   # Пароль пользователя
+#         'HOST': 'localhost',           # Адрес сервера БД
+#         'PORT': '5432',
+#     }
+# }
 
 ROOT_URLCONF = 'config.urls'
 
@@ -157,13 +158,13 @@ AUTH_USER_MODEL = 'user_auth.User'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-#
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 
 # Default primary key field type
