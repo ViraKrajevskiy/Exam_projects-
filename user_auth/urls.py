@@ -36,8 +36,8 @@ router.register(r'staff', StaffViewsSet)
 router.register(r'pay_for_student', PayStudentViewsSet)
 
 urlpatterns = [
-    path('api/login/', LoginView.as_view(), name='login'),
-    path('api/logout/', LogoutView.as_view(), name='logout'),
+    # path('api/login/', LoginView.as_view(), name='login'),
+    # path('api/logout/', LogoutView.as_view(), name='logout'),
     # path('api/register/', RegisterView.as_view(), name='register'),
 ]
 
