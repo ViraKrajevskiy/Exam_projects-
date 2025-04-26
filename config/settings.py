@@ -3,6 +3,9 @@ from datetime import timedelta
 from email.policy import default
 from pathlib import Path
 import os
+from dotenv import load_dotenv
+
+load_dotenv('/var/config_files/.env')
 
 from django.conf.global_settings import STATIC_ROOT
 
@@ -15,9 +18,7 @@ LOGIN_REDIRECT_URL = '/swagger/'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-@5az8@+l-p7vf#6gu%0)ps!k=*1++(!0cdl=5n-q#&^3!yaru2'
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -74,7 +75,6 @@ STATICFILES_DIRS = [
     BASE_DIR / 'user_auth' / 'static'
 ]
 
-# STATIC_ROOT = os.path.join(BASE_DIR,'static/')
 
 
 
@@ -89,17 +89,6 @@ REST_FRAMEWORK = {
     )
 }
 
-#
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'UchebniyCentr',  # Имя базы данных
-#         'USER': 'ViraKrajevskiy',       # Имя пользователя PostgreSQL
-#         'PASSWORD': '3003',   # Пароль пользователя
-#         'HOST': 'localhost',           # Адрес сервера БД
-#         'PORT': '5432',
-#     }
-# }
 
 ROOT_URLCONF = 'config.urls'
 
